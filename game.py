@@ -70,6 +70,7 @@ class Game():
             print('Ваши выстрелы по доске компьютера:')
             print(self._computer_board.to_str(hidden=True))
             if self._computer_turn:
+                print('##################   Ход компьютера   ###')
                 try:
                     coord = self._player_board.get_random_not_hit_coord()
                     print(f'Компьютер выстрелил по координатам {coord}')
@@ -83,12 +84,13 @@ class Game():
                             print('Еще один ход за компьютером!')
                     else:
                         self._computer_turn = not self._computer_turn
-                        print('И компьютер промазал, теперь ваш ход')
+                        print('Компьютер промазал')
                 except BoardShipsError as msg:
                     print('Ошибка!!! Игра завершена')
                     print(msg)
                     return
             else:
+                print('##################   Ваш ход   ###')
                 coord = input('Введите координаты куда хотие выстрелить в формате A1: ')
                 try:
                     coord = Board.get_hit_coord(coord)
@@ -99,7 +101,7 @@ class Game():
                             return
                     else:
                         self._computer_turn = not self._computer_turn
-                        print('И вы промазали, теперь ход компьютера')
+                        print('И вы промазали')
                 except WrongCoords as msg:
                     print('!!!!ОШИБКА!!!!')
                     print(msg)
